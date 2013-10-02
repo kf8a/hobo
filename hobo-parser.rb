@@ -18,20 +18,28 @@ class HoboParser
     lines.shift
     id = title[0].split()[2]
 
+    chambers = @cut_list.first {|x| x[:id] == id }
+    list = chambers[:chambers]
     lines.each do |row|
       sampled_at = Chronic.parse(row[1])
-      list = @cut_list.first {|x| x[:id] == id }
-      if sampled_at > list[:from] &&
-        sampled_at < list[:to]
-        unless @output["#{list[:id]}-#{sampled_at}"]
-          @output["#{list[:id]}-#{sampled_at}"] = [list[:id],list[:plot],sampled_at]
+      list.each do |deployment|
+        if sampled_at > deployment[:from] && sampled_at < deployment[:to]
+
+          $stderr.print '.'
+
+          unless @output["#{deployment[:id]}-#{sampled_at}"]
+            @output["#{deployment[:id]}-#{sampled_at}"] = [deployment[:id],deployment[:plot],sampled_at]
+          end
+
+          if deployment[:internal]
+            @output["#{deployment[:id]}-#{sampled_at}"][3] = row[2]
+          else
+            @output["#{deployment[:id]}-#{sampled_at}"][4] = row[2]
+          end
+
+          @output["#{deployment[:id]}-#{sampled_at}"][5] = row[3]
         end
-        if list[:internal]
-          @output["#{list[:id]}-#{sampled_at}"][3] = row[2]
-        else
-          @output["#{list[:id]}-#{sampled_at}"][4] = row[2]
-        end
-        @output["#{list[:id]}-#{sampled_at}"][5] = row[3]
+
       end
     end
   end
