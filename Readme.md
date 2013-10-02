@@ -13,7 +13,7 @@ Quick start
 ------------
 
 1. Edit the control.yaml file to reflect the current deployment. 
-2. Download the Hobo logger data into the current directory making sure that the id number is the first thing in the Plot Title.
+2. Download the Hobo logger data into the download directory
 3. ruby hobo.rb > collected-data.csv
 4. ???
 5. Profit
