@@ -1,7 +1,7 @@
 hobo.rb
 ========
 
-A quick program to cut out the data from the HOBO datalogger records when the loggers
+A script to cut out the data from the HOBO datalogger records when the loggers
 where actually deployed. The script will attempt to process all csv files in the current diretroy.
 
 Prerequisites
