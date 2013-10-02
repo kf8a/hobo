@@ -14,12 +14,15 @@ class HoboParser
   def parse(file)
     internal = false
     lines = CSV.read(file, encoding: 'WINDOWS-1252:UTF-8')
-    title = lines.shift
     lines.shift
-    id = title[0].split()[2]
+    title = lines.shift
+    id = title[2].match(/S\/N: (\d+)/)
+    return unless id
+    id = id[1].to_i
 
     chambers = @cut_list.first {|x| x[:id] == id }
     list = chambers[:chambers]
+    p list
     lines.each do |row|
       sampled_at = Chronic.parse(row[1])
       list.each do |deployment|

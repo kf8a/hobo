@@ -13,6 +13,7 @@ Main {
   def run
     parser = HoboParser.new()
     Dir.glob('*.csv').each do |file|
+      p file
       parser.parse(file)
     end
     parser.write
