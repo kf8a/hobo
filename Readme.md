@@ -12,11 +12,11 @@ The "include serial number" option needs to be checked in the export options of 
 Quick start
 ------------
 
-* Edit the control.yaml file to reflect the current deployment. 
-* Download the Hobo logger data into the current directory making sure that the id number is the first thing in the Plot Title.
-* ruby hobo.rb > collected-data.csv
-* ???
-* Profit
+# Edit the control.yaml file to reflect the current deployment. 
+# Download the Hobo logger data into the current directory making sure that the id number is the first thing in the Plot Title.
+# ruby hobo.rb > collected-data.csv
+# ???
+# Profit
 
 Details
 -------
