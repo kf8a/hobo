@@ -12,7 +12,7 @@ class HoboParser
   end
 
   def parse(file)
-    internal = false
+    inside = false
     lines = CSV.read(file, encoding: 'WINDOWS-1252:UTF-8')
     lines.shift
     title = lines.shift
@@ -34,7 +34,7 @@ class HoboParser
             @output["#{deployment[:id]}-#{sampled_at}"] = [deployment[:id],deployment[:plot],sampled_at]
           end
 
-          if deployment[:internal]
+          if deployment[:inside]
             @output["#{deployment[:id]}-#{sampled_at}"][3] = row[2]
           else
             @output["#{deployment[:id]}-#{sampled_at}"][4] = row[2]
